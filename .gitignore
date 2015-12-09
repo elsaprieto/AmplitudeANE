@@ -1,0 +1,12 @@
+# General
+temp
+build.config
+android
+
+# Xcode
+xcuserdata
+
+# OS X
+Icon
+Thumbs.db
+.DS_Store
