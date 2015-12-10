@@ -1,4 +1,4 @@
-Air Native Extension for Amplitude (iOS only)
+AIR Native Extension for Amplitude (iOS only)
 ======================================
 
 This AIR Native Extension lets you use [Amplitude](http://amplitude.com) analytics tools in your AIR application. It is only available for iOS at the moment, Android support is coming soon!
@@ -26,7 +26,7 @@ Here is the simplest way to track an event. Events are saved locally and uploade
 ```
 You can also add properties to an event.
 ```actionscript3
-	var properties:Object = new Object;
+	var properties : Object = new Object();
 	properties.category = "Awesome events";
     amplitudeInstance.logEvent("EVENT_ID", properties);
 ```
@@ -55,14 +55,14 @@ Or you can set it later:
 ```
 You can also set user properties:
 ```actionscript3
-    var properties:Object = new Object;
+    var properties : Object = new Object();
 	properties.description = "this user is cool";
 	properties.coolRatio = 11;
     amplitudeInstance.setUserProperties(properties);
 ```
-And if you change your mind, you can delete user properties. In this case the value of the property is useless, it will just be deleted anyway.
+And if you change your mind, you can delete user properties. In this case the value of the property is ignored, it will just delete it.
 ```actionscript3
-    var properties:Object = new Object;
+    var properties : Object = new Object();
 	properties.description = "";
     amplitudeInstance.unsetUserProperties(properties);
 ```
