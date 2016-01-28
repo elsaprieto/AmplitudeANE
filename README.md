@@ -1,7 +1,7 @@
-AIR Native Extension for Amplitude (iOS only)
+AIR Native Extension for Amplitude
 ======================================
 
-This AIR Native Extension lets you use [Amplitude](http://amplitude.com) analytics tools in your AIR application. It is only available for iOS at the moment, Android support is coming soon!
+This AIR Native Extension lets you use [Amplitude](http://amplitude.com) analytics tools in your AIR application.
 
 
 # Setup #
@@ -39,7 +39,7 @@ If your app contains In-App Purchases, you can track revenues and LTV with Ampli
 	var quantity : int = 1;
 	amplitudeInstance.logRevenue(price, "PRODUCT_ID", quantity);
 ```
-*WARNING* : I did not implement Amplitude's [revenue verification feature](https://amplitude.zendesk.com/hc/en-us/articles/207150887-Revenue) yet. Do not add your iTunes Connect IAP Shared Secret to your Amplitude profile, or your revenues won't be tracked. Revenues should appear as "Unverified" in Amplitude.
+*WARNING* : I did not implement Amplitude's [revenue verification feature](https://amplitude.zendesk.com/hc/en-us/articles/207150887-Revenue) yet. Do not add your iTunes Connect IAP Shared Secret/Google Play License Public Key to your Amplitude profile, or your revenues won't be tracked. Revenues should appear as "Unverified" in Amplitude.
 
 Tracking Users
 ---------

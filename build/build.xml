@@ -5,7 +5,7 @@
     <property file="build.config"/>
 
     <!-- All -->
-    <target name="all" depends="ios,swc,package" description="Full build of extension"/>
+    <target name="all" depends="ios,android,swc,package" description="Full build of extension"/>
     
     <!-- iOS -->
     <target name="ios" description="Build iOS Library">
@@ -29,6 +29,25 @@
         <delete dir="../temp/ios/build/"/>
     </target>
 
+    <!-- Android -->
+    <target name="android" description="Build Android Library">
+        <delete dir="../android/temp"/>
+        <mkdir dir="../android/temp/classes"/>
+
+        <javac srcdir="../android/src" destdir="../android/temp/classes" includeantruntime="false">
+            <classpath>
+                <pathelement location="${android.sdk}/android.jar"/>
+                <pathelement location="${flex.sdk}/lib/android/FlashRuntimeExtensions.jar"/>
+                <pathelement location="../android/libs/amplitude-android-2.5.0-with-dependencies.jar"/>
+            </classpath>
+        </javac>
+
+        <mkdir dir="../temp/android/"/>
+        <copy file="../android/libs/amplitude-android-2.5.0-with-dependencies.jar" todir="../temp/android/"/>
+        <jar basedir="../android/temp/classes" destfile="../temp/android/lib${name}.jar"/>
+        <delete dir="../android/temp"/>
+    </target>
+
     <!-- Actionscript -->
     <target name="swc" description="Build SWC library">
         <mkdir dir="../temp/swc/content/"/>
@@ -49,10 +68,12 @@
             <arg line='-include-classes ${classlist}'/>
         </exec>
 
+        <copy file="../temp/swc/${name}.swc" todir="../bin" overwrite="true"/>
         <unzip src="../temp/swc/${name}.swc" dest="../temp/swc/content" overwrite="true"/>
         <copy file="../temp/swc/content/library.swf" todir="../temp/ios" overwrite="true"/>
         <copy file="../temp/swc/content/library.swf" todir="../temp/android" overwrite="true"/>
         <copy file="../temp/swc/content/library.swf" todir="../temp/default" overwrite="true"/>
+
         <delete dir="../temp/swc/content/"/>
     </target>
 
@@ -65,7 +86,8 @@
             <arg value="${name}.ane"/>
             <arg value="../build/extension.xml"/>
             <arg line="-swc swc/${name}.swc"/>
-            <arg line="-platform iPhone-ARM -platformoptions ../build/platform.xml -C ios/ ."/>
+            <arg line="-platform iPhone-ARM -platformoptions ../build/platform-ios.xml -C ios/ ."/>
+            <arg line="-platform Android-ARM -platformoptions ../build/platform-android.xml -C android/ ."/>
             <arg line="-platform default -C default/ ."/>
         </exec>
 

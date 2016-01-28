@@ -1,0 +1,6 @@
+<platform xmlns="http://ns.adobe.com/air/extension/15.0">
+    <packagedDependencies>
+        <packagedDependency>amplitude-android-2.5.0-with-dependencies.jar</packagedDependency>
+    </packagedDependencies>
+</platform>
+

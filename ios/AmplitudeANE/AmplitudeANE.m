@@ -25,7 +25,7 @@ FREObject initializeApiKey (FREContext context, void* functionData, uint32_t arg
         }
         NSString *apiKey = [NSString stringWithUTF8String:(char*)apiKeyValue];
         [[Amplitude instance] initializeApiKey:apiKey userId:userID];
-        customLog(@"Starting Amplitude session with API key: %@ and userID; %@", apiKey, userID);
+        customLog(@"Starting Amplitude session with API key: %@ and userID: %@", apiKey, userID);
     } else {
         customLog(@"ERROR: problems whith API key.");
     }
@@ -120,7 +120,7 @@ FREObject logRevenue (FREContext context, void* functionData, uint32_t argc, FRE
     
     FREGetObjectAsInt32(argv[2], &quantity);
     
-    customLog(@"Log revenue - $%f, %d, %@", price, quantity, productIdentifier);
+    customLog(@"Logged revenue - $%f, %d, %@", price, quantity, productIdentifier);
     [[Amplitude instance] logRevenue:productIdentifier quantity:quantity price:[NSNumber numberWithDouble:price] receipt:receipt];
     
     return nil;

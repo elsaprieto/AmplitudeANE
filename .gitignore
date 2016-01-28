@@ -1,10 +1,10 @@
 # General
 temp
 build.config
-android
 
 # Xcode
 xcuserdata
+xcshareddata
 
 # OS X
 Icon
